@@ -1,0 +1,7 @@
+[
+  { "id": "screens-menu", "kind": "screen", "title": ["Screens"], "name": "Menu", "file": "app/src/main/java/com/scrymore/kettle/ui/MenuScreen.kt", "line": 14 },
+  { "id": "screens-item-detail", "kind": "screen", "title": ["Screens"], "name": "Item Detail", "file": "app/src/main/java/com/scrymore/kettle/ui/ItemDetailScreen.kt", "line": 28 },
+  { "id": "screens-order", "kind": "screen", "title": ["Screens"], "name": "Order", "file": "app/src/main/java/com/scrymore/kettle/ui/OrderScreen.kt", "line": 26 },
+  { "id": "components-button", "kind": "component", "title": ["Components", "Button"], "name": "Button", "file": "app/src/main/java/com/scrymore/kettle/ui/Button.kt", "line": 24 },
+  { "id": "components-quantity-stepper", "kind": "component", "title": ["Components", "Quantity Stepper"], "name": "Quantity Stepper", "file": "app/src/main/java/com/scrymore/kettle/ui/QuantityStepper.kt", "line": 24 }
+]

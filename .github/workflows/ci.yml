@@ -1,0 +1,36 @@
+# Build and lint on GitHub's own runners. No secrets, no Scry upload: a pull request from a fork can run this safely.
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main, stage]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
+      - name: Build and lint (debug)
+        run: ./gradlew --no-daemon :app:assembleDebug :app:lintDebug
+      - name: Build the release variant
+        run: ./gradlew --no-daemon :app:assembleRelease :app:lintRelease
+      - name: Release build carries no capture hook
+        run: |
+          apk=$(ls app/build/outputs/apk/release/*.apk | head -1)
+          if unzip -p "$apk" 'classes*.dex' | grep -a -q 'scry_screen'; then
+            echo "release APK contains the scry_screen capture hook" >&2; exit 1
+          fi
+          echo "release APK has no capture hook"
+      - name: The bare variant builds
+        run: |
+          bash scripts/make-bare.sh "$RUNNER_TEMP/bare"
+          (cd "$RUNNER_TEMP/bare" && ./gradlew --no-daemon :app:assembleDebug)
+      - name: Workflow rules (G5)
+        run: bash scripts/check-workflows.sh

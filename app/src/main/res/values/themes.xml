@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kettle "bg" (#FBF7F2) behind everything; the status bar matches it so a capture shows no dark band. -->
+    <style name="Theme.Kettle" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#FBF7F2</item>
+        <item name="android:statusBarColor">#FBF7F2</item>
+        <item name="android:navigationBarColor">#FBF7F2</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

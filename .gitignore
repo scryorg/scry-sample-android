@@ -1,0 +1,21 @@
+# Build output
+build/
+.gradle/
+.kotlin/
+*.apk
+*.aab
+
+# Local machine and secrets
+local.properties
+.env
+.env.*
+!.env.example
+
+# Scry capture output (never commit it; docs/screens/ holds the five committed PNGs)
+.scry/
+
+# IDE and OS
+.idea/
+*.iml
+.DS_Store
+captures/
